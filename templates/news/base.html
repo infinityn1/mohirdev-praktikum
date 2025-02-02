@@ -69,14 +69,20 @@
                 </ul>
               </div>
               <div class="header_top_right">
-                <p>Friday, December 05, 2045</p>
+                {% if request.user.is_authenticated %}
+                <p><a href="{% url 'logout' %}" style="color: palegreen;">Logout</a></p>
+                <p><a href="{% url 'user_profile' %}" style="color: white;">My profile</a></p>
+                {% else %}
+                <p><a href="{% url 'login' %}" style="color: white;">Saytga kirish</a></p>
+                {% endif %}
+                <p>{% now "jS F Y H:i" %}
               </div>
             </div>
           </div>
           <div class="col-lg-12 col-md-12 col-sm-12">
             <div class="header_bottom">
               <div class="logo_area">
-                <a href="home.html" class="logo"
+                <a href="{% url 'home_page' %}" class="logo"
                   ><img src="static/images//logo.jpg" alt=""
                 /></a>
               </div>
@@ -119,6 +125,11 @@
               <li><a href="{% url 'sport_news_page' %}">Sport</a></li>
               <li><a href="{% url 'contact_page' %}">Contact Us</a></li>
               <li><a href="{% url '404_page' %}">404 Page</a></li>
+              <li>
+                <form action="{% url 'search_result' %}" method="get" style="margin-top: 7px;">
+                  <input type="search" name="q" placeholder="Qidiruv..." class="form-control">
+                </form>
+              </li>
             </ul>
           </div>
         </nav>
@@ -194,7 +205,7 @@
         </div>
         <div class="footer_bottom">
           <p class="copyright">
-            Copyright &copy; 2045 <a href="home.html">NewsFeed</a>
+            Copyright &copy; 2045 <a href="{% url 'home_page' %}">NewsFeed</a>
           </p>
           <p class="developer">Developed By Wpfreeware</p>
         </div>

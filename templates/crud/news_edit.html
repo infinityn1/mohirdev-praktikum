@@ -1,0 +1,20 @@
+{% extends "news/base.html" %}
+
+{% load static %}
+
+{% block title %} {{ news.title }} {% endblock title %}
+
+{% block content %}
+
+    <h2 class="text-center">Joriy yangilikni ochirish</h2>
+    <form method="post" enctype='multipart/form-data'>{% csrf_token %}
+        {{ form.as_p }}
+    <button type="submit" class="btn btn-info ml-2">Tahrirlash</button>
+    </form>
+
+    <div class="card-footer text-center">
+        <a href="{% url 'news_update' news.slug %}">Tahrirlash</a>
+        <a href="{% url 'news_delete' news.slug %}">O'chirish</a>
+    </div>
+
+{% endblock content %}

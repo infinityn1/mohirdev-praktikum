@@ -1,0 +1,19 @@
+{% extends "news/base.html" %}
+{% load static %}
+{% block title %}Foydalanuvchi malumotlarini ozgartirish{% endblock title %}
+
+
+{% block content %}
+
+<h1>Fordalanuvchi malumotlarini ozgartirish</h1>
+<p>Quyidagi formani toldiring</p>
+<form method="post" enctype="multipart/form-data">{% csrf_token %}
+    {{ user_form.as_p }}
+    {{ profile_form.as_p }}
+    <button type="submit">Saqlsah</button>
+
+</form>
+
+
+
+{% endblock %}
